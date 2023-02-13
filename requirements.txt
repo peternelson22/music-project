@@ -1,0 +1,4 @@
+Django>=4.1.6,<4.2
+Pillow==9.4.0
+psycopg2-binary>=2.8.6,<2.9
+uWSGI>=2.0.19.1,<2.1

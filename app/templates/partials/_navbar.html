@@ -1,0 +1,65 @@
+{% load static %}
+<header class="header-area">
+    <!-- Navbar Area -->
+    <div class="oneMusic-main-menu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                    <!-- Nav brand -->
+                    <a href="{% url 'index' %}" class="nav-brand"><b>You V!bez</b></a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- Close Button -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li><a href="{% url 'albums-store' %}">Albums</a></li>
+                                
+                                <li><a href="{% url 'event' %}">Events</a></li>
+                                {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'accounts' %}">Accounts</a></li>
+                                 <li><a href="{% url 'inbox' %}">Inbox</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'adminuser' %}">Contact</a></li>
+                            </ul>
+
+                            <!-- Login/Register & Cart Button -->
+                            <div class="login-register-cart-button d-flex align-items-center">
+                                <!-- Login/Register -->
+                                {% if request.user.is_authenticated %}
+                                <div class="login-register-btn mr-50">
+                                    <a href="{% url 'logout' %}" id="loginBtn">Logout</a>
+                                </div>
+                                {% else %}
+                                <div class="login-register-btn mr-50">
+                                    <a href="{% url 'login' %}" id="loginBtn">Login / Register</a>
+                                </div>
+                                {% endif %}
+                                <!-- Cart Button -->
+                                <!-- <div class="cart-btn">
+                                    <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- Nav End -->
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

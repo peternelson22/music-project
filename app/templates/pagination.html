@@ -1,0 +1,23 @@
+{% if queryset.has_other_pages %}
+<div class="oneMusic-pagination-area wow fadeInUp" data-wow-delay="300ms">
+    <nav>
+
+        <ul class="pagination">
+            {% if queryset.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{queryset.previous_page_number}}">&#10094;</a></li>
+
+            {% endif %}
+            {% for page in custom_range %}
+            <li class="page-item {% if page == queryset.number %}active{% endif %}"><a class="page-link"
+                    href="?page={{page}}">{{page}}</a></li>
+            {% endfor %}
+
+            {% if queryset.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{queryset.next_page_number}}">&#10095;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
+</div>

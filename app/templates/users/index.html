@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+
+    <style>
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+    
+        .img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #img-top{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 0 50% 50% 50%;
+        }
+    </style>
+
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+
+            {% for latest_album in latest_albums %}
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({{latest_album.logo.url}});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">{{latest_album.album_title}} <span>{{latest_album.album_title}}</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="{% url 'albums-store' %}" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Latest Albums Area Start ##### -->
+    <section class="latest-albums-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading style-2">
+                        <p>See what’s new</p>
+                        <h2>Latest Albums</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9">
+                    <div class="ablums-text text-center mb-70">
+                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                                   
+                    <div class="albums-slideshow owl-carousel">
+                        <!-- Single Album -->
+                        {% for album in albums %}
+                        <div class="single-album">
+                            <div class="img-container">
+                            <img src="{{album.logo.url}}" alt="">
+                            </div>
+                            <div class="album-info">
+                                <a href="#">
+                                    <h5>By {{album.artist_name}}</h5>
+                                </a>
+                                <p>{{album.album_title}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Latest Albums Area End ##### -->
+
+    <!-- ##### Miscellaneous Area Start ##### -->
+    <section class="miscellaneous-area section-padding-50-0">
+        <div class="container">
+            <div class="row">
+                <!-- ***** Weeks Top ***** -->
+                <div class="col-12 col-lg-4">
+                    <div class="weeks-top-area mb-100">
+                        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+                            <p>See what’s new</p>
+                            <h2>This week’s top</h2>
+                        </div>
+
+                        <!-- Single Top Item -->
+                       
+                        {% for top_album in top_albums %}
+                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
+                            <div class="thumbnail">
+                                
+                                <img src="{{top_album.logo.url}}" alt="" id="img-top">
+                            </div>
+                            <div class="content-">
+                                <h6>{{top_album.artist_name}}</h6>
+                                <p>{{top_album.album_title}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    
+                        
+                    </div>
+                </div>
+
+                <!-- ***** New Hits Songs ***** -->
+                <div class="col-12 col-lg-4">
+                    <div class="new-hits-area mb-50">
+                        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+                            <p>See what’s new</p>
+                            <h2>New Hits</h2>
+                        </div>
+
+                        <!-- Single Top Item -->
+                        {% for song in songs %}
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+                            <div class="first-part d-flex align-items-center">
+                                <div class="thumbnail">
+                                    <img src="{{song.album.logo.url}}" alt="" class="rounded-circle" id="img-top">
+                                </div>
+                                <div class="content-">
+                                    <h6>{{song}}</h6>
+                                    <p>{{song.album.artist_name}}</p>
+                                </div>
+                            </div>
+                            <audio preload="auto" controls>
+                                <source src="audio/dummy-audio.mp3">
+                            </audio>
+                        </div>
+                        {% endfor %}
+
+                       
+                       
+
+                       
+                    </div>
+                </div>
+
+                <!-- ***** Popular Artists ***** -->
+                <div class="col-12 col-lg-4">
+                    <div class="popular-artists-area mb-100">
+                        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+                            <p>See what’s new</p>
+                            <h2>Popular Artist</h2>
+                        </div>
+
+                        <!-- Single Artist -->
+                        {% for artist in albums %}
+                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+                            <div class="thumbnail">
+                                
+                                <img src="{{artist.owner.image.url}}" alt="" class="rounded-circle">
+
+                                
+                            </div>
+                            <div class="content-">
+                                <p>{{artist.artist_name}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Miscellaneous Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    {% endblock %}
+  
