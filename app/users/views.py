@@ -1,6 +1,3 @@
-from datetime import datetime
-from random import random
-from time import timezone
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -41,11 +38,11 @@ def _login(request):
 
         user = authenticate(request, username=username, password=password)
 
-        if user is None:
-            messages.error(request, 'Bad credentials')
-        else:
+        if user is not None:
             login(request, user)
             return redirect('index')
+        else:
+            messages.error(request, 'Bad credentials')
     return render(request, 'users/login.html')
 
 
