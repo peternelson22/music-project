@@ -15,15 +15,15 @@ def profile_create(sender, instance, created, **kwargs):
         profile = Profile.objects.create(user=user, first_name=user.first_name,
                                          last_name=user.last_name, email=user.email)
 
-        subject = 'Welcome to One music'
-        message = 'You will never need to leave here'
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [profile.email],
-            fail_silently=False,
-        )
+        # subject = 'Welcome to One music'
+        # message = 'You will never need to leave here'
+        # send_mail(
+        #     subject,
+        #     message,
+        #     settings.EMAIL_HOST_USER,
+        #     [profile.email],
+        #     fail_silently=False,
+        # )
 
 
 def update_user(sender, instance, created, **kwargs):

@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="{% if song.mp3 %} {{song.mp3.url}} {% endif %}">
                             </audio>
                         </div>
                         {% endfor %}

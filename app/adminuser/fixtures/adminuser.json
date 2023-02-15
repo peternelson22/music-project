@@ -1,0 +1,12 @@
+[
+    {
+        "model": "adminuser.AdminUser",
+        "pk": 1,
+        "fields": {
+            "name": "Pete Nelson",
+            "email": "peternelson063@gmail.com",
+            "phone": "234-813-853-9625",
+            "address": "Abuja, Nigeria"
+        }
+    }
+]

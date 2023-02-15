@@ -2,7 +2,7 @@
 
 {% block content %}
 <!-- ##### Breadcumb Area Start ##### -->
-<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/img/bg-img/breadcumb3.jpg);">
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/static/img/bg-img/breadcumb3.jpg);">
     <div class="bradcumbContent">
         <p>See what’s new</p>
         <h2>{{album.album_title}}</h2>
@@ -15,28 +15,30 @@
         <div class="row">
             
                     <!-- ##### Accordians ##### -->
+
                     <div class="col-12 col-lg-6">
-                        <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
-                            <!-- single accordian area -->
                             {% for song in album.song_set.all %}
-                            <div class="panel single-accordion">
-                                <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse"
-                                        data-parent="#accordion" href="#collapse{{song.id}}">{{song.song_title}}
-                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                    </a></h6>
-                                <div id="collapse{{song.id}}" class="accordion-content collapse hide">
-                                    <p>{{song.description}}</p>
+
+                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                                <!-- <div class="song-thumbnail">
+                                    <img src="img/bg-img/s1.jpg" alt="">
+                                </div> -->
+                                <div class="song-play-area">
+                                    <div class="song-name">
+                                        <p class="d-flex justify-content-between">{{song.song_title}} <span >By {{song.album.artist_name}}</span> </p>
+                                    </div>
+                                    <audio preload="auto" controls>
+                                        <source src="{% if song.mp3 %} {{song.mp3.url}} {% endif %}">
+                                    </audio>
+                                    <small class="d-flex justify-content-end"><i>{{song.description}}</i></small>
                                 </div>
                             </div>
                             {% endfor %}
-                            
-                            
-                        </div>
+
                     </div>
 
                     <div class="col-lg-6 p-5">
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{form.as_p}}
                             <input type="submit" value="Add Song" class="btn oneMusic-btn mb-4">

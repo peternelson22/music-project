@@ -17,10 +17,17 @@
         height: 100%;
         object-fit: cover;
     }
+    .adds{
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        
+    }
 </style>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/img/bg-img/breadcumb3.jpg);">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/static/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
             <h2>Latest Albums</h2>
@@ -97,27 +104,9 @@
 
             </div>
             {% include 'pagination.html' with queryset=albums custom_range=custom_range %}
-        
+
     </section>
-    <!-- ##### Album Catagory Area End ##### -->
-
-    <!-- ##### Add Area Start ##### -->
-    <div class="add-area mb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="adds">
-                        <a href="#"><img src="img/bg-img/add3.gif" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Add Area End ##### -->
-
-    <!-- ##### Song Area Start ##### -->
-   
-    <!-- ##### Song Area End ##### -->
+  
 
 
     {% endblock %}

@@ -59,14 +59,24 @@ def register(request):
         form = UserForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.save()
+            username = user.username
+            email = user.email
+        
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Email already taken')
+                return redirect('register')
+            elif User.objects.filter(username=username).exists():
+                messages.info(request, 'Username already taken')
+                return redirect('register')
+            else:
+                user.save()
 
-            messages.success(request, 'Successfully registered')
-            login(request, user)
-            return redirect('index')
+                messages.success(request, 'Successfully registered')
+                login(request, user)
+                return redirect('index')
         else:
-            messages.error(request, 'something went wrong')
-
+            messages.error(request, 'Password inconsitent and please enter a strong password')
+   
     return render(request, 'users/register.html', {'form': form})
 
 

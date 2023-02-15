@@ -22,7 +22,7 @@ def songs(request, pk):
     form = SongForm()
 
     if request.method == 'POST':
-        form = SongForm(request.POST)
+        form = SongForm(request.POST, request.FILES)
         if form.is_valid():
             song = form.save(commit=False)
             song.album = album

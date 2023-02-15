@@ -32,6 +32,7 @@ class Song(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     song_title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    mp3 = models.FileField(null=True, blank=True)
 
     class Meta:
         db_table = 'song'
