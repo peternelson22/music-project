@@ -213,3 +213,20 @@
     })
 
 })(jQuery);
+
+
+ function validate() {
+        let password = document.getElementById("pass1").value;
+        let cpassword = document.getElementById("pass2").value;
+        let message = document.getElementById("message");
+
+
+        if (password.length != 0) {
+            if (password == cpassword) {
+                message.textContent = "";
+            } else {
+                message.textContent = "*password does not match*";
+            }
+        }
+
+    }

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, UserForm, MessageForm
+from .forms import ProfileForm, MessageForm
 from .models import Profile
 from core.models import Album, Song
 from .utils import paginate_profiles, paginate_msgs
@@ -33,8 +33,8 @@ def _login(request):
 
         try:
             user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            messages.error(request, 'User does not exist')
+        except:
+            pass
 
         user = authenticate(request, username=username, password=password)
 
@@ -53,31 +53,33 @@ def _logout(request):
 
 
 def register(request):
-    form = UserForm()
-
+    
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            username = user.username
-            email = user.email
+        first_name = request.POST.get('firstname')
+        last_name = request.POST.get('lastname')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
+        password2 = request.POST.get('password2')
         
+        if password == password2:
             if User.objects.filter(email=email).exists():
-                messages.info(request, 'Email already taken')
+                messages.info(request, 'Email already taken...')
                 return redirect('register')
             elif User.objects.filter(username=username).exists():
-                messages.info(request, 'Username already taken')
+                messages.info(request, 'Username already taken...')
                 return redirect('register')
             else:
+                user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
                 user.save()
-
-                messages.success(request, 'Successfully registered')
+                messages.success(request, 'Successfully registered...')
                 login(request, user)
-                return redirect('index')
         else:
-            messages.error(request, 'Password inconsitent and please enter a strong password')
-   
-    return render(request, 'users/register.html', {'form': form})
+            messages.error(request, 'Password not matching...')
+            return redirect('register')
+    
+    return render(request, 'users/register.html')
+
 
 
 def profile(request, pk):

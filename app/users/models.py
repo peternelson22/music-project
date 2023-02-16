@@ -9,12 +9,19 @@ class Profile(models.Model):
     email = models.EmailField(max_length=200, null=True, blank=True)
     location = models.CharField(max_length=200, null=True, blank=True)
     bio = models.TextField(blank=True, null=True)
-    image = models.ImageField(default="media/blankimage.png", upload_to="images/users")
+    image = models.ImageField(default="blankimage.png", upload_to="images/users")
     social_media = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
 class Message(models.Model):
     sender = models.ForeignKey(

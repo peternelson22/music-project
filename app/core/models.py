@@ -4,7 +4,7 @@ from users.models import Profile
 
 
 class Album(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     album_title = models.CharField(max_length=200, null=True, blank=True)
     artist_name = models.CharField(max_length=200, null=True, blank=True)
     logo = models.ImageField(null=True, blank=True, default='blankimage.png', upload_to='images/albums')
@@ -17,16 +17,23 @@ class Album(models.Model):
     def __str__(self) -> str:
         return self.artist_name + ' - ' + self.album_title
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
 
-        img = Image.open(self.logo.path)
+    #     img = Image.open(self.logo.path)
 
-        if img.height > 100 or img.width > 100:
-            new_img = (554, 554)
-            img.thumbnail(new_img)
-            img.save(self.logo.path)
+    #     if img.height > 100 or img.width > 100:
+    #         new_img = (554, 554)
+    #         img.thumbnail(new_img)
+    #         img.save(self.logo.path)
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.logo.url
+        except:
+            url = ''
+        return url
 
 class Song(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)

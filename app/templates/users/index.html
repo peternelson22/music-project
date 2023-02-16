@@ -32,7 +32,7 @@
             {% for latest_album in latest_albums %}
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url({{latest_album.logo.url}});"></div>
+                <div class="slide-img bg-img" style="background-image: url({{latest_album.imageURL}});"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -79,7 +79,7 @@
                         {% for album in albums %}
                         <div class="single-album">
                             <div class="img-container">
-                            <img src="{{album.logo.url}}" alt="">
+                            <img src="{{album.imageURL}}" alt="">
                             </div>
                             <div class="album-info">
                                 <a href="#">
@@ -114,7 +114,7 @@
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
                                 
-                                <img src="{{top_album.logo.url}}" alt="" id="img-top">
+                                <img src="{{top_album.imageURL}}" alt="" id="img-top">
                             </div>
                             <div class="content-">
                                 <h6>{{top_album.artist_name}}</h6>
@@ -140,7 +140,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="{{song.album.logo.url}}" alt="" class="rounded-circle" id="img-top">
+                                    <img src="{{song.album.imageURL}}" alt="" class="rounded-circle" id="img-top">
                                 </div>
                                 <div class="content-">
                                     <h6>{{song}}</h6>

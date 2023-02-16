@@ -16,17 +16,49 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="login-content">
-                    <h3>Welcome to One Sound</h3>
+                    <h3>Welcome to You V!bez</h3>
                     <!-- Login Form -->
                     <div class="login-form">
-                        <form action="#" method="post">
+                        <form action="{% url 'register' %}" method="post">
                             {% csrf_token %}
-                            {% for field in form %}
+
                             <div class="form-group">
-                                <label for="exampleInputEmail1">{{field.label}}</label>
-                                {{field}}
+                                <label for="exampleInputEmail1">First Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    placeholder="Enter First name" name="firstname">
+                                
                             </div>
-                            {% endfor %}
+                            <div class="form-group">
+                                <label for="exampleInputName2">Last Name</label>
+                                <input type="text" class="form-control" id="exampleInputName2" aria-describedby="emailHelp"
+                                    placeholder="Enter LastName" name="lastname">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail">Email</label>
+                                <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                                    placeholder="Enter Email" name="email">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername">Username</label>
+                                <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp"
+                                    placeholder="Enter Username" name="username">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Password</label>
+                                <input type="text" id="pass1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    placeholder="Enter Password"  name="password1">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Password Confirmation</label>
+                                <input type="text" id="pass2" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    placeholder="Enter Password again"  name="password2" onkeyup="validate()">
+                                     <small id="message" class="text-danger float-start"></small>
+
+                            </div>
                             <button type="submit" class="btn oneMusic-btn mt-30">Sign up</button>
                             <div>
                                 <small>Already have an account? <a href="{% url 'login' %}">Login</a></small>
@@ -39,4 +71,7 @@
     </div>
 </section>
 <!-- ##### Registeration Area End ##### -->
+
+
 {% endblock %}
+
