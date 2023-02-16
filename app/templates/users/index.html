@@ -58,7 +58,6 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        <p>See what’s new</p>
                         <h2>Latest Albums</h2>
                     </div>
                 </div>
@@ -83,7 +82,7 @@
                             </div>
                             <div class="album-info">
                                 <a href="#">
-                                    <h5>By {{album.artist_name}}</h5>
+                                    <h5>By {{album.owner.user.username}}</h5>
                                 </a>
                                 <p>{{album.album_title}}</p>
                             </div>
@@ -104,7 +103,6 @@
                 <div class="col-12 col-lg-4">
                     <div class="weeks-top-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-                            <p>See what’s new</p>
                             <h2>This week’s top</h2>
                         </div>
 
@@ -117,7 +115,7 @@
                                 <img src="{{top_album.imageURL}}" alt="" id="img-top">
                             </div>
                             <div class="content-">
-                                <h6>{{top_album.artist_name}}</h6>
+                                <h6>{{top_album.owner.user.username}}</h6>
                                 <p>{{top_album.album_title}}</p>
                             </div>
                         </div>
@@ -144,7 +142,7 @@
                                 </div>
                                 <div class="content-">
                                     <h6>{{song}}</h6>
-                                    <p>{{song.album.artist_name}}</p>
+                                    <p>{{song.album.owner.user.username}}</p>
                                 </div>
                             </div>
                             <audio preload="auto" controls>
@@ -164,8 +162,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="popular-artists-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-                            <p>See what’s new</p>
-                            <h2>Popular Artist</h2>
+                            <h2>Popular Artists</h2>
                         </div>
 
                         <!-- Single Artist -->
@@ -178,7 +175,7 @@
                                 
                             </div>
                             <div class="content-">
-                                <p>{{artist.artist_name}}</p>
+                                <p>{{artist.owner.user.username}}</p>
                             </div>
                         </div>
                         {% endfor %}

@@ -29,7 +29,6 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/static/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <p>See what’s new</p>
             <h2>Latest Albums</h2>
             {% if request.user.is_authenticated %}
             <div class="oneMusic-buttons-area mt-2">
@@ -94,7 +93,7 @@
                         </div>
                         <div class="album-info">
                             <a href="{% url 'song' album.id %}">
-                                <h5>{{album.artist_name}}</h5>
+                                <h5>{{album.owner.user.username}}</h5>
                             </a>
                             <p>{{album.album_title}}</p>
                         </div>

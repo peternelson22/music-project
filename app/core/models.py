@@ -6,7 +6,6 @@ from users.models import Profile
 class Album(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     album_title = models.CharField(max_length=200, null=True, blank=True)
-    artist_name = models.CharField(max_length=200, null=True, blank=True)
     logo = models.ImageField(null=True, blank=True, default='blankimage.png', upload_to='images/albums')
     pub_date = models.DateTimeField(auto_now_add=True)
 

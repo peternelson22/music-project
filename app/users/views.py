@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, MessageForm
-from .models import Profile
+from .models import Profile, User
 from core.models import Album, Song
 from .utils import paginate_profiles, paginate_msgs
 from django.utils import timezone
@@ -28,15 +28,15 @@ def _login(request):
         return redirect('index')
 
     if request.method == 'POST':
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
 
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
         except:
             pass
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
@@ -55,8 +55,7 @@ def _logout(request):
 def register(request):
     
     if request.method == 'POST':
-        first_name = request.POST.get('firstname')
-        last_name = request.POST.get('lastname')
+        name = request.POST.get('name')
         email = request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password1')
@@ -64,16 +63,19 @@ def register(request):
         
         if password == password2:
             if User.objects.filter(email=email).exists():
-                messages.info(request, 'Email already taken...')
+                messages.info(request, 'Email already taken... pls try another one')
                 return redirect('register')
             elif User.objects.filter(username=username).exists():
-                messages.info(request, 'Username already taken...')
+                messages.info(request, 'Name already taken... pls try another one')
                 return redirect('register')
             else:
-                user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
+                user = User.objects.create_user(name=name, email=email, username=username, password=password)
                 user.save()
+                
                 messages.success(request, 'Successfully registered...')
-                login(request, user)
+                user_login = auth.authenticate(email=email, password=password)
+                auth.login(request, user_login)
+                return redirect('index')
         else:
             messages.error(request, 'Password not matching...')
             return redirect('register')
