@@ -4,7 +4,6 @@
 {% block content %}
 <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/static/img/bg-img/breadcumb3.jpg);">
     <div class="bradcumbContent">
-        <p>See what’s new</p>
         <h2>Profile</h2>
     </div>
 </section>
@@ -22,7 +21,7 @@
                             <p class="lead mb-1"><b>Stage Name:</b> {{request.user.username}} </p>
                             <p class="lead mb-1"><b>Email:</b> {{profile.email}}</p>
                             <p class="lead mb-1"><b>Location:</b> {{profile.location}}</p>
-                            <p class="text-secondary mb-1"><a href="{{profile.social_media}}"><h6 class="text-primary">Connect</h6></a></p>
+                            <p class="text-secondary mb-1">{% if profile.social_media is not None %}<a href="{{profile.social_media}}"><h6 class="text-primary">Connect</h6></a>{% endif %}</p>
                             <p class="text-muted font-size-sm">{{profile.bio | slice:"40"}}</p>
                             {% if request.user.profile.id == profile.id %}
                             <a href="{% url 'profile-edit' %}" class="btn btn-primary">Edit</a>
@@ -44,20 +43,20 @@
                 <div class="d-flex justify-content-center">
                     <div class="single-cool-fact mb-100">
                         <div class="scf-text">
-                            <h2>+<span class="counter">100</span></h2>
-                            <p class="text-center">New Albums</p>
+                            <h2><span class="counter">{{album_count}}</span></h2>
+                            <p class="text-center">No. of Albums</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center">
+                <!-- <div class="d-flex justify-content-center">
                     <div class="single-cool-fact mb-100">
                         <div class="scf-text">
                             <h2><span class="counter">28</span></h2>
                             <p class="text-center">Awards Won</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

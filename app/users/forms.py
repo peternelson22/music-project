@@ -1,5 +1,6 @@
 from django import forms
 from .models import Message, Profile
+from django.forms import ImageField, FileInput
 
 class MessageForm(forms.ModelForm):
     class Meta:
@@ -14,10 +15,10 @@ class MessageForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    image = ImageField(widget=FileInput)
     class Meta:
         model = Profile
-        fields = '__all__'
-        exclude = ['user', 'email']
+        fields = ['name', 'location', 'image', 'bio']
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)

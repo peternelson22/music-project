@@ -14,7 +14,9 @@ def index(request):
     albums = Album.objects.all().order_by('-pub_date')
 
     latest_albums = albums
+    
     songs = Song.objects.all().order_by('?')
+
     top_albums = Album.objects.filter(pub_date__lt=timezone.now())
 
     context = {'albums': albums[:5], 'latest_albums': latest_albums[:2],
@@ -86,7 +88,8 @@ def register(request):
 
 def profile(request, pk):
     profile = Profile.objects.get(id=pk)
-    return render(request, 'users/profile.html', {'profile': profile})
+    album_count = Album.objects.filter(owner=profile).count()
+    return render(request, 'users/profile.html', {'profile': profile, 'album_count': album_count})
 
 
 @login_required(login_url='login')
@@ -98,7 +101,7 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect(profile)
+            return redirect('profile', pk=profile.id)
 
     return render(request, 'users/profile-form.html', {'form': form})
 

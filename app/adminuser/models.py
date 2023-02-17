@@ -16,11 +16,11 @@ class AdminUser(models.Model):
 
 
 class MessageAdmin(models.Model):
-    admin = models.ForeignKey(AdminUser, on_delete=models.SET_NULL, null=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    email = models.EmailField(max_length=200, null=True, blank=True)
-    subject = models.CharField(max_length=200, null=True, blank=True)
-    body = models.TextField(null=True, blank=True)
+    admin = models.ForeignKey(AdminUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    subject = models.CharField(max_length=200)
+    body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

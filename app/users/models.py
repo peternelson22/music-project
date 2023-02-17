@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     name = models.CharField(max_length=255, null=True)
-    username = models.CharField(max_length=200, null=True, blank=True)
+    username = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
     
     USERNAME_FIELD = 'email'
@@ -35,7 +35,7 @@ class Message(models.Model):
         Profile, on_delete=models.CASCADE, null=True, blank=True, related_name='messages')
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=200, null=True, blank=True)
-    subject = models.CharField(max_length=200, null=True, blank=True)
+    subject = models.CharField(max_length=200)
     body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 

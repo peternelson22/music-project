@@ -4,7 +4,6 @@
 <!-- ##### Breadcumb Area Start ##### -->
 <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/static/static/img/bg-img/breadcumb3.jpg);">
     <div class="bradcumbContent">
-        <p>See what’s new</p>
         <h2>Signup</h2>
     </div>
 </section>
@@ -23,32 +22,32 @@
                             {% csrf_token %}
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Full Name</label>
+                                <label for="exampleInputEmail1">Full Name<span class="text-danger">*</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     placeholder="Enter Full name" name="name">
                                 
                             </div>
                           
                             <div class="form-group">
-                                <label for="exampleInputEmail">Email</label>
+                                <label for="exampleInputEmail">Email<span class="text-danger">*</label>
                                 <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                                     placeholder="Enter Email" name="email">
                                 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputUsername">Artist Name</label>
+                                <label for="exampleInputUsername">Artist Name<span class="text-danger">*</label>
                                 <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp"
                                     placeholder="Enter Username" name="username">
                                 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
+                                <label for="exampleInputEmail1">Password<span class="text-danger">*</label>
                                 <input type="text" id="pass1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     placeholder="Enter Password"  name="password1">
                                 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password Confirmation</label>
+                                <label for="exampleInputEmail1">Password Confirmation<span class="text-danger">*</label>
                                 <input type="text" id="pass2" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                     placeholder="Enter Password again"  name="password2" onkeyup="validate()">
                                      <small id="message" class="text-danger float-start"></small>
