@@ -11,8 +11,7 @@ from django.utils import timezone
 
 
 def index(request):
-    albums = Album.objects.all().order_by('-pub_date')
-
+    albums = Album.objects.order_by('-pub_date').distinct()
     latest_albums = albums
     
     songs = Song.objects.all().order_by('?')
@@ -142,7 +141,7 @@ def create_message(request, pk):
             message.recipient = recipient
 
             if sender:
-                message.name = sender.first_name
+                message.name = sender.name
                 message.email = sender.email
 
             message.save()

@@ -81,7 +81,7 @@
                             <img src="{{album.imageURL}}" alt="">
                             </div>
                             <div class="album-info">
-                                <a href="#">
+                                <a href="{% url 'profile' album.owner.id %}">
                                     <h5>By {{album.owner.user.username}}</h5>
                                 </a>
                                 <p>{{album.album_title}}</p>
@@ -129,7 +129,6 @@
                 <div class="col-12 col-lg-4">
                     <div class="new-hits-area mb-50">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-                            <p>See what’s new</p>
                             <h2>New Hits</h2>
                         </div>
 
@@ -169,14 +168,17 @@
                         {% for artist in albums %}
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
-                                
+                                {% ifchanged %}
                                 <img src="{{artist.owner.image.url}}" alt="" class="rounded-circle">
 
                                 
                             </div>
                             <div class="content-">
+                                
                                 <p>{{artist.owner.user.username}}</p>
+                                
                             </div>
+                            {% endifchanged %}
                         </div>
                         {% endfor %}
 
